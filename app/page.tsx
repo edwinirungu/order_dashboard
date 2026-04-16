@@ -1,5 +1,6 @@
 "use client";
 import useSWR, { useSWRConfig } from "swr";
+import Link from "next/link";
 import fetcher from "@/lib/utils";
 
 import {
@@ -20,8 +21,8 @@ export default function Home() {
 
   const { data, isLoading, isValidating, error } = useSWR("accounts", fetcher);
 
-  const handleNavigation = () => {
-    router.push("/accounts/[sid]");
+  const handleNavigation = (sid: string) => {
+    router.push(`/account/${sid}`);
   };
 
   return (
@@ -47,13 +48,16 @@ export default function Home() {
               <p>{account.friendly_name}</p>
             </CardContent>
             <CardFooter>
-              <Button
-                onClick={() => handleNavigation()}
+              {/* <Button
+                onClick={() => handleNavigation(account.owner_account_sid)}
                 variant="outline"
                 size="sm"
                 className="w-full"
-              ></Button>
+              ></Button> */}
             </CardFooter>
+            <Link href={`/account/${account.owner_account_sid}`}>
+              View Account
+            </Link>
           </Card>
         ))}
       </div>
