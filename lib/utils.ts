@@ -7,11 +7,11 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 const instance = axios.create({
-  baseURL: "https://twilio-api.mock.beeceptor.com",
+  baseURL: "https://fakerapi.it/api/v2",
 });
 
 export default function fetcher() {
   return instance
-    .get("/2010-04-01/Accounts.json")
+    .get("/companies?_quantity=1000")
     .then((response) => response.data);
 }

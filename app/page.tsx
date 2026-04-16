@@ -1,6 +1,6 @@
 "use client";
 import useSWR, { useSWRConfig } from "swr";
-import Link from "next/link";
+import Image from "next/image";
 import fetcher from "@/lib/utils";
 
 import {
@@ -8,9 +8,10 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  CardContent,
+  CardAction,
   CardFooter,
 } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 import { useRouter } from "next/navigation";
@@ -21,43 +22,45 @@ export default function Home() {
 
   const { data, isLoading, isValidating, error } = useSWR("accounts", fetcher);
 
-  const handleNavigation = (sid: string) => {
-    router.push(`/account/${sid}`);
-  };
-
   return (
     <div className="m-2">
       <h2>Accounts</h2>
       <Button onClick={() => mutate("accounts")}>Refresh</Button>
-      <div className="flex flex-col ">
+      <div className="flex flex-row flex-wrap gap-5 ">
         {isLoading && <h1>Loading accounts..</h1>}
         {isValidating && <h1>validating..</h1>}
         {error && <div>{error}</div>}
-        {data?.accounts.map((account) => (
+        {data?.data.map((company) => (
           <Card
-            key={account.sid}
-            size="sm"
-            className="mx-auto w-full max-w-sm m-5"
+            key={company.id}
+            className="relative mx-auto w-full max-w-sm pt-0"
           >
-            {" "}
+            <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
+            <Image
+              src="https://picsum.photos/200/300"
+              alt="Event cover"
+              className="relative z-20 aspect-video w-full object-cover brightness-60 grayscale dark:brightness-40"
+            />
             <CardHeader>
-              <CardTitle>{account.owner_account_sid}</CardTitle>
-              <CardDescription>{account.uri}</CardDescription>
+              <CardAction>
+                <Badge variant="secondary">{company.country}</Badge>
+              </CardAction>
+              <CardTitle>{company.name}</CardTitle>
+              <CardDescription>
+                A practical talk on component APIs, accessibility, and shipping
+                faster.
+              </CardDescription>
             </CardHeader>
-            <CardContent>
-              <p>{account.friendly_name}</p>
-            </CardContent>
             <CardFooter>
-              {/* <Button
-                onClick={() => handleNavigation(account.owner_account_sid)}
-                variant="outline"
-                size="sm"
+              <Button
+                onClick={() => {
+                  router.push(`/company/${company.id}`);
+                }}
                 className="w-full"
-              ></Button> */}
+              >
+                View Event
+              </Button>
             </CardFooter>
-            <Link href={`/account/${account.owner_account_sid}`}>
-              View Account
-            </Link>
           </Card>
         ))}
       </div>
