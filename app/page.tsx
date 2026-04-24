@@ -9,12 +9,13 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
+import OrderTable from "@/components/OrderTable";
 
 export default function Home() {
   const { mutate } = useSWRConfig();
   const { data, isLoading, isValidating, error } = useSWR("accounts", fetcher);
-  const [searchInput, setSearchInput] = useState("");
-  const handleForm = useCallback((e) => {
+  const [searchInput, setSearchInput] = useState<string>("");
+  const handleForm = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setSearchInput(e.target.value);
   }, []);
@@ -34,11 +35,16 @@ export default function Home() {
           <InputGroupAddon align="inline-end"></InputGroupAddon>
         </InputGroup>
       </div>
+      <div>
+        {" "}
+        <OrderTable />{" "}
+      </div>
 
       <div className="flex flex-row flex-wrap gap-5 ">
         {isLoading && <h1>Loading accounts..</h1>}
         {isValidating && <h1>validating..</h1>}
-        {error && <div>{error}</div>}
+
+        {/* {error && <div>{error}</div>}
         {data &&
           data
             .filter((company) =>
@@ -46,7 +52,7 @@ export default function Home() {
             )
             .map((company) => (
               <CompanyCard key={company.id} company={company} />
-            ))}
+            ))} */}
       </div>
     </div>
   );

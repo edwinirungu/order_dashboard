@@ -12,6 +12,6 @@ const instance = axios.create({
 
 export default function fetcher() {
   return instance
-    .get("/companies?_quantity=500")
+    .get("/companies?_quantity=100")
     .then((response) => response.data.data);
 }
