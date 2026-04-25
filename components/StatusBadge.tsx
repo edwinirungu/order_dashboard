@@ -1,36 +1,31 @@
 import { OrderStatusJSON } from "@/types/order";
-export default function StatusBadge({ order_status }) {
-  let status_style: string = "";
-  switch (order_status) {
-    case order_status === "created" ||
-      order_status === "finalizing_details" ||
-      order_status === "matching_carriers" ||
-      order_status === "driver_assigned":
-      status_style = "text-orange-500 bg-orange-100";
-      break;
-    case order_status === "in_transit" ||
-      order_status === "at_origin" ||
-      order_status === "at_destination" ||
-      order_status === "driver_assigned":
-      status_style = "text-blue-500 bg-blue-100";
-      break;
-    case order_status === "delivered":
-      status_style = "text-green-500 bg-green-100";
-      console.log("delivred");
-      break;
-    case order_status === "cancelled":
-      status_style = "text-red-500 bg-red-100";
-      break;
-    default:
-      break;
-  }
-  console.log(status_style);
 
-  return (
-    <div
-      className={`w-auto border rounded-[20px]  p-1 text-center ${status_style}`}
-    >
-      {order_status}
-    </div>
-  );
+export default function StatusBadge({
+  order_status,
+}: {
+  order_status: OrderStatusJSON;
+}) {
+  function getBadgeStyle() {
+    const base =
+      "inline-flex items-center text-center px-2.5 py-0.5 text-[16px] rounded-[5px]";
+
+    switch (order_status) {
+      case "delivered":
+        return `${base} bg-[5da271]-50 border border-[#cfe1b9] text-[#5da271]`;
+
+      case "created":
+      case "finalizing_details":
+      case "driver_assigned":
+      case "matching_carriers":
+        return `${base} bg-orange-50 border bg-orange-50 text-orange-500`;
+
+      case "cancelled":
+        return `${base} border bg-red-100 bg-red-50 text-red-500`;
+
+      default:
+        return `${base} bg-gray-50 text-gray-500`;
+    }
+  }
+
+  return <span className={getBadgeStyle()}>{order_status}</span>;
 }
