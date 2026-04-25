@@ -24,7 +24,7 @@ export default function OrderTable() {
               onClick={() => {
                 setOpenOrder(openOrder === order.id ? null : order.id);
               }}
-              className="grid grid-cols-6 gap-1 border-t"
+              className="grid grid-cols-6 gap-1 border-t items-center"
             >
               <div>
                 <div className="flex flex-col ">
@@ -36,7 +36,7 @@ export default function OrderTable() {
                 {order.order_origins[0].address}{" "}
                 {order.order_destinations[0].address}
               </div>
-              <div className="flex flex-col">
+              <div className="">
                 <StatusBadge
                   order_status={order.order_status_id as OrderStatusJSON}
                 />
