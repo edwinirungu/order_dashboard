@@ -9,7 +9,7 @@ export default function OrderTable() {
 
   return (
     <>
-      <div className="grid grid-cols-6 bg-gray-100 py-1 my-1">
+      <div className="grid  grid-cols-6 bg-gray-100 py-1 my-1">
         <div>Details</div>
         <div>Route</div>
         <div>Status</div>
@@ -24,7 +24,7 @@ export default function OrderTable() {
               onClick={() => {
                 setOpenOrder(openOrder === order.id ? null : order.id);
               }}
-              className="grid grid-cols-6 gap-1 border-t items-center"
+              className="grid text-gray-700 grid-cols-6 gap-1 border-t items-center"
             >
               <div>
                 <div className="flex flex-col ">
