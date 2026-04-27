@@ -1,9 +1,9 @@
-import orders from "@/store/order.json";
+import { OrderJSON } from "@/types/order";
 import { useState } from "react";
 import StatusBadge from "./StatusBadge";
 import { Separator } from "./ui/separator";
 import { OrderStatusJSON } from "@/types/order";
-export default function OrderTable() {
+export default function OrderTable({ orders }: { orders: OrderJSON[] }) {
   type toggleView = number | null;
   const [openOrder, setOpenOrder] = useState<toggleView>(null);
 
@@ -18,7 +18,7 @@ export default function OrderTable() {
         <div>Load</div>
       </div>
       <div className="border rounded-sm">
-        {orders.items.map((order) => (
+        {orders.map((order) => (
           <div key={order.id}>
             <div
               onClick={() => {
