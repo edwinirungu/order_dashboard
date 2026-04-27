@@ -1,6 +1,7 @@
 export interface OrderJSON {
   id: number;
   identifier: string;
+  created_at: string;
   reference: string;
   shipper_id: number;
   product_id: number;
