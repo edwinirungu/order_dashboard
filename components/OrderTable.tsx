@@ -3,6 +3,7 @@ import { useState } from "react";
 import StatusBadge from "./StatusBadge";
 import { Separator } from "./ui/separator";
 import { OrderStatusJSON } from "@/types/order";
+import { formatDate } from "@/lib/utils";
 export default function OrderTable({ orders }: { orders: OrderJSON[] }) {
   type toggleView = number | null;
   const [openOrder, setOpenOrder] = useState<toggleView>(null);
@@ -29,15 +30,7 @@ export default function OrderTable({ orders }: { orders: OrderJSON[] }) {
               <div>
                 <div className="flex flex-col ">
                   <span className="font-medium">{order.id}</span>
-
-                  {new Date(order.created_at).toLocaleString("en-us", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                    hour: "numeric",
-                    minute: "2-digit",
-                    hour12: true,
-                  })}
+                  {formatDate(order.created_at)}
                 </div>
               </div>
               <div className="flex flex-col">
@@ -66,7 +59,7 @@ export default function OrderTable({ orders }: { orders: OrderJSON[] }) {
                 <Separator />
                 <div className="flex flex-row gap-6">
                   <div className="flex flex-col">
-                    <span>Created at : {order.created_at} </span>
+                    <span>Created at : {formatDate(order.created_at)} </span>
                     <span>{order.order_lines[0].name}</span>
                     <span>Shipper: {order.shipper.name}</span>
                     <span>Phone: {order.shipper.phone}</span>
