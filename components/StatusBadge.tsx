@@ -1,4 +1,5 @@
 import { OrderStatusJSON } from "@/types/order";
+import { OrderStatusString } from "@/lib/utils";
 export default function StatusBadge({ order_status }) {
   function getBadgeStyle() {
     switch (order_status) {
@@ -28,7 +29,7 @@ export default function StatusBadge({ order_status }) {
     <div
       className={`w-auto py-[5px]  rounded-sm text-center text-sm ${getBadgeStyle()}`}
     >
-      {order_status}
+      {OrderStatusString(order_status)}
     </div>
   );
 }
