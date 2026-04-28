@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import axios from "axios";
+import { OrderStatusJSON } from "@/types/order";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -24,4 +25,40 @@ export function formatDate(date: string) {
     minute: "2-digit",
     hour12: true,
   });
+}
+
+export const OrderStatus = {
+  created: "Created",
+  finalizingDetail: "Finalizing Details",
+  matchingCarriers: "Matching Carriers",
+  carrierConfirmed: "Carrier Confirmed",
+  driverAssigned: "Driver Assigned",
+  onTransitToPickup: "On Transit to Pickup",
+  atOrigin: "At Pickup Point",
+  inTransit: "In Transit",
+  atDestination: "At DropOff",
+  delivered: "Delivered",
+  cancelled: "Cancelled",
+};
+export function OrderStatusString(order_status: OrderStatusJSON) {
+  switch (order_status) {
+    case "created":
+      return OrderStatus.created;
+      break;
+    case "finalizing_details":
+      return OrderStatus.finalizingDetail;
+      break;
+    case "matching_carriers":
+      return OrderStatus.finalizingDetail;
+      break;
+    case "driver_assigned":
+      return OrderStatus.driverAssigned;
+      break;
+    case "delivered":
+      return OrderStatus.delivered;
+      break;
+    case "cancelled":
+      return OrderStatus.cancelled;
+      break;
+  }
 }
