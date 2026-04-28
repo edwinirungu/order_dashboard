@@ -15,3 +15,13 @@ export default function fetcher() {
     .get("/companies?_quantity=100")
     .then((response) => response.data.data);
 }
+export function formatDate(date: string) {
+  return new Date(date).toLocaleString("en-us", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+}
