@@ -1,4 +1,3 @@
-import { OrderStatusJSON } from "@/types/order";
 import { OrderStatusString } from "@/lib/utils";
 export default function StatusBadge({ order_status }) {
   function getBadgeStyle() {
