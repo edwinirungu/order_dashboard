@@ -4,7 +4,8 @@ import StatusBadge from "./StatusBadge";
 import { Separator } from "./ui/separator";
 import { OrderStatusJSON } from "@/types/order";
 import { formatDate } from "@/lib/utils";
-export default function OrderTable({ orders }: { orders: OrderJSON[] }) {
+
+export default function OrderTable({ orders }: { orders: OrderJSON[] | [] }) {
   type toggleView = number | null;
   const [openOrder, setOpenOrder] = useState<toggleView>(null);
 
@@ -19,7 +20,7 @@ export default function OrderTable({ orders }: { orders: OrderJSON[] }) {
         <div>Load</div>
       </div>
       <div className="border rounded-sm">
-        {orders.map((order) => (
+        {orders?.map((order) => (
           <div key={order.id}>
             <div
               onClick={() => {
