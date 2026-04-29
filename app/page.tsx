@@ -33,13 +33,12 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-2 m-4">
       <div className=" flex flex-row gap-1 ">
-        {" "}
-        <h2 className="text-xl">Companies</h2>
-        <Button onClick={() => mutate("accounts")}>Refresh</Button>
         <Button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
           <Sun className="scale-0 dark:scale-100" />
           <Moon className="absolute scale-100 dark:scale-0 " />
-        </Button>
+        </Button>{" "}
+        <h2 className="text-xl">Orders</h2>
+        {/* <Button onClick={() => mutate("accounts")}>Refresh</Button> */}
         <InputGroup className="max-w-xs">
           <InputGroupInput
             onChange={(e) => handleForm(e)}
