@@ -12,8 +12,10 @@ import {
 } from "@/components/ui/input-group";
 import OrderTable from "@/components/OrderTable";
 import { OrderJSON, OrderStatusJSON } from "@/types/order";
+import useTheme from "next-theme";
 
 export default function Home() {
+  const { theme, setTheme } = useTheme();
   const { mutate } = useSWRConfig();
   // const { data, isLoading, isValidating, error } = useSWR("accounts", fetcher);
   const [searchInput, setSearchInput] = useState<string>("");
@@ -32,6 +34,9 @@ export default function Home() {
         {" "}
         <h2 className="text-xl">Companies</h2>
         <Button onClick={() => mutate("accounts")}>Refresh</Button>
+        <Button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
+          Refresh
+        </Button>
         <InputGroup className="max-w-xs">
           <InputGroupInput
             onChange={(e) => handleForm(e)}
