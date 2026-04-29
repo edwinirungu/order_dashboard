@@ -35,7 +35,7 @@ export default function Home() {
         <h2 className="text-xl">Companies</h2>
         <Button onClick={() => mutate("accounts")}>Refresh</Button>
         <Button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
-          Refresh
+          Change Theme
         </Button>
         <InputGroup className="max-w-xs">
           <InputGroupInput
