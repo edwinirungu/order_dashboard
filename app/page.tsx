@@ -1,9 +1,11 @@
 "use client";
 import useSWR, { useSWRConfig } from "swr";
+import { Sun, Moon } from "lucide-react";
 import data from "../store/order.json";
 import { useState, useCallback, useRef } from "react";
-import fetcher from "@/lib/utils";
-import CompanyCard from "@/components/Tab";
+// import fetcher from "@/lib/utils";
+// import CompanyCard from "@/components/Tab";
+import { OrderJSON, OrderStatusJSON } from "@/types/order";
 import { Button } from "@/components/ui/button";
 import {
   InputGroup,
@@ -11,7 +13,7 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import OrderTable from "@/components/OrderTable";
-import { OrderJSON, OrderStatusJSON } from "@/types/order";
+
 import useTheme from "next-theme";
 
 export default function Home() {
@@ -35,7 +37,8 @@ export default function Home() {
         <h2 className="text-xl">Companies</h2>
         <Button onClick={() => mutate("accounts")}>Refresh</Button>
         <Button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
-          Change Theme
+          <Sun className="scale-0 dark:scale-100" />
+          <Moon className="absolute scale-100 dark:scale-0 " />
         </Button>
         <InputGroup className="max-w-xs">
           <InputGroupInput
