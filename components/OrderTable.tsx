@@ -11,7 +11,7 @@ export default function OrderTable({ orders }: { orders: OrderJSON[] | [] }) {
 
   return (
     <>
-      <div className="grid grid-cols-6 bg-gray-100 py-1 my-1">
+      <div className="grid grid-cols-6 bg-gray-100 dark:bg-zinc-950 dark:text-white-100 py-1 my-1">
         <div>Details</div>
         <div>Route</div>
         <div>Status</div>
