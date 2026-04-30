@@ -44,10 +44,12 @@ export default function OrderTable({ orders }: { orders: OrderJSON[] | [] }) {
                 />
               </div>
               <div className="flex flex-col">
-                <div>{order.vehicle?.licence_plate}</div>
+                <div>
+                  {order.vehicle ? order.vehicle.licence_plate : "----"}
+                </div>
                 <div> {order.driver?.phone}</div>
               </div>
-              <div>{order.total_price}</div>
+              <div>{Number(order.total_price).toFixed(2)}</div>
               <div>{order.order_loads[0].commodity}</div>
             </div>
             {openOrder === order.id && (
