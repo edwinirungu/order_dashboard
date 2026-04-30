@@ -49,7 +49,7 @@ export default function OrderTable({ orders }: { orders: OrderJSON[] | [] }) {
                 </div>
                 <div> {order.driver?.phone}</div>
               </div>
-              <div>{Number(order.total_price).toFixed(2)}</div>
+              <div>KES {Number(order.total_price).toFixed(2)}</div>
               <div>{order.order_loads[0].commodity}</div>
             </div>
             {openOrder === order.id && (
