@@ -3,7 +3,7 @@ import { useState } from "react";
 import StatusBadge from "./StatusBadge";
 import { Separator } from "./ui/separator";
 import { OrderStatusJSON } from "@/types/order";
-import { formatDate } from "@/lib/utils";
+import { formatDate, timeDifference } from "@/lib/utils";
 
 export default function OrderTable({ orders }: { orders: OrderJSON[] | [] }) {
   type toggleView = number | null;
@@ -65,6 +65,11 @@ export default function OrderTable({ orders }: { orders: OrderJSON[] | [] }) {
                 <div className="flex flex-row gap-6">
                   <div className="flex flex-col">
                     <span>Created at : {formatDate(order.created_at)} </span>
+                    <span className="text-green-400">
+                      Dropoff in{" "}
+                      {timeDifference(order.order_destinations[0].dropoff_date)}{" "}
+                      days.
+                    </span>
                     <span>{order.order_lines[0].name}</span>
                     <span>Shipper: {order.shipper.name}</span>
                     <span>Phone: {order.shipper.phone}</span>
