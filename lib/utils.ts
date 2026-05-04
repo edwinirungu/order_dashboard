@@ -62,3 +62,12 @@ export function OrderStatusString(order_status: OrderStatusJSON) {
       break;
   }
 }
+export function timeDifference(dropoff: string) {
+  const now = new Date();
+  const dropoff_date = new Date(dropoff);
+  const timeDifference = +dropoff_date - +now;
+  const difference_in_minutes = Math.floor(timeDifference / 60000);
+  const difference_in_hours = Math.floor(timeDifference / (60000 * 60));
+  const difference_in_days = Math.floor(timeDifference / (60000 * 60 * 24));
+  return difference_in_days;
+}
