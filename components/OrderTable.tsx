@@ -12,7 +12,8 @@ export default function OrderTable({ orders }: { orders: OrderJSON[] | [] }) {
 
   return (
     <>
-      <div className="grid grid-cols-[1fr_2fr_1fr_1fr_1fr_1fr] bg-gray-100 dark:bg-zinc-950 dark:text-white-100 py-1 my-1">
+      <div className="grid grid-cols-[1fr_2fr_1fr_1fr_1fr_1fr_1fr] bg-gray-100 dark:bg-zinc-950 dark:text-white-100 py-1 my-1">
+        <div>ID</div>
         <div>Details</div>
         <div>Route</div>
         <div>Status</div>
@@ -27,11 +28,11 @@ export default function OrderTable({ orders }: { orders: OrderJSON[] | [] }) {
               onClick={() => {
                 setOpenOrder(openOrder === order.id ? null : order.id);
               }}
-              className="grid grid-cols-[1fr_2fr_1fr_1fr_1fr_1fr] gap-1 border-t items-center"
+              className="grid grid-cols-[0.5fr_1fr_2fr_1fr_1fr_1fr_1fr] p-1 gap-1 border-t items-center"
             >
+              <span className="font-medium">{order.id}</span>
               <div>
                 <div className="flex flex-col ">
-                  <span className="font-medium">{order.id}</span>
                   {formatDate(order.created_at)}
                 </div>
               </div>
