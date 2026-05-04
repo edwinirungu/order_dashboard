@@ -8,10 +8,11 @@ import { formatDate } from "@/lib/utils";
 export default function OrderTable({ orders }: { orders: OrderJSON[] | [] }) {
   type toggleView = number | null;
   const [openOrder, setOpenOrder] = useState<toggleView>(null);
+  //
 
   return (
     <>
-      <div className="grid grid-cols-6 bg-gray-100 dark:bg-zinc-950 dark:text-white-100 py-1 my-1">
+      <div className="grid grid-cols-[1fr_2fr_1fr_1fr_1fr_1fr] bg-gray-100 dark:bg-zinc-950 dark:text-white-100 py-1 my-1">
         <div>Details</div>
         <div>Route</div>
         <div>Status</div>
@@ -26,7 +27,7 @@ export default function OrderTable({ orders }: { orders: OrderJSON[] | [] }) {
               onClick={() => {
                 setOpenOrder(openOrder === order.id ? null : order.id);
               }}
-              className="grid grid-cols-6 gap-1 border-t items-center"
+              className="grid grid-cols-[1fr_2fr_1fr_1fr_1fr_1fr] gap-1 border-t items-center"
             >
               <div>
                 <div className="flex flex-col ">
@@ -35,8 +36,8 @@ export default function OrderTable({ orders }: { orders: OrderJSON[] | [] }) {
                 </div>
               </div>
               <div className="flex flex-col">
-                {order.order_origins[0].address}{" "}
-                {order.order_destinations[0].address}
+                {order.order_origins[0].address.split(",")[0]} to{" "}
+                {order.order_destinations[0].address.split(",")[0]}
               </div>
               <div className="flex flex-col w-[150px] ">
                 <StatusBadge
