@@ -12,7 +12,7 @@ export default function OrderTable({ orders }: { orders: OrderJSON[] | [] }) {
 
   return (
     <>
-      <div className="grid grid-cols-[1fr_2fr_1fr_1fr_1fr_1fr_1fr] bg-gray-100 dark:bg-zinc-950 dark:text-white-100 py-1 my-1">
+      <div className="grid grid-cols-[0.5fr_1fr_2fr_1fr_1fr_1fr_1fr] bg-gray-100 dark:bg-zinc-950 dark:text-white-100 py-1 my-1">
         <div>ID</div>
         <div>Details</div>
         <div>Route</div>
