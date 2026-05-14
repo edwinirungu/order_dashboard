@@ -37,8 +37,8 @@ export default function Home() {
           <Sun className="scale-0 dark:scale-100" />
           <Moon className="absolute scale-100 dark:scale-0 " />
         </Button>{" "}
-        <h2 className="text-xl">Orders</h2>
-        {/* <Button onClick={() => mutate("accounts")}>Refresh</Button> */}
+        {/* <h2 className="text-xl">Orders</h2>
+       <Button onClick={() => mutate("accounts")}>Refresh</Button> 
         <InputGroup className="max-w-xs">
           <InputGroupInput
             onChange={(e) => handleForm(e)}
@@ -46,7 +46,7 @@ export default function Home() {
           />
           <InputGroupAddon></InputGroupAddon>
           <InputGroupAddon align="inline-end"></InputGroupAddon>
-        </InputGroup>
+        </InputGroup> */}
       </div>
       <div>
         {" "}
