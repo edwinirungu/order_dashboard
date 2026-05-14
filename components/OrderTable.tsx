@@ -19,7 +19,7 @@ export default function OrderTable({ orders }: { orders: OrderJSON[] | [] }) {
   return (
     <>
       {orders?.map((order) => (
-        <Card key={order.id} className="w-full">
+        <Card key={order.id} className="w-full my-2">
           <CardContent>
             <Collapsible>
               <CollapsibleTrigger>
@@ -27,7 +27,7 @@ export default function OrderTable({ orders }: { orders: OrderJSON[] | [] }) {
                   onClick={() => {
                     setOpenOrder(openOrder === order.id ? null : order.id);
                   }}
-                  className="grid grid-cols-[0.5fr_1fr_2fr_1fr_1fr_1fr_1fr] p-1 gap-1 border-t items-center"
+                  className="grid grid-cols-[1fr_1fr_2fr_2fr_1fr_1fr_1fr] p-1 gap-  items-center"
                 >
                   <span className="font-medium">{order.id}</span>
                   <div>
@@ -35,23 +35,38 @@ export default function OrderTable({ orders }: { orders: OrderJSON[] | [] }) {
                       {formatDate(order.created_at)}
                     </div>
                   </div>
-                  <div className="flex flex-col">
-                    {order.order_origins[0].address.split(",")[0]} to{" "}
-                    {order.order_destinations[0].address.split(",")[0]}
+                  <div className="align-left">
+                    {order.order_origins[0].address.split(",")[0]} <br />
+                    {formatDate(order.order_origins[0].pickup_date)}
                   </div>
-                  <div className="flex flex-col w-[150px] ">
+                  <div className="flex flex-col">
+                    {order.order_destinations.map((dest) => (
+                      <div key={dest.id}>
+                        {dest.address.split(",")[0].slice(0, 15)}...
+                        {formatDate(dest.dropoff_date)}
+                        <br />
+                      </div>
+                    ))}
+                  </div>
+                  {/* <div className="flex flex-col w-[150px] ">
                     <StatusBadge
                       order_status={order.order_status_id as OrderStatusJSON}
                     />
-                  </div>
+                  </div> */}
                   <div className="flex flex-col">
                     <div>
                       {order.vehicle ? order.vehicle.licence_plate : "----"}
                     </div>
-                    <div> {order.driver?.phone}</div>
+                    <div>{order.order_lines[0].name}</div>
+                  </div>
+                  <div>
+                    {order.total_distance}km
+                    <br />{" "}
+                    {order.order_destinations.length > 1
+                      ? `${order.order_destinations.length} Stops`
+                      : `single drop`}
                   </div>
                   <div>KES {Number(order.total_price).toFixed(2)}</div>
-                  <div>{order.order_loads[0].commodity}</div>
                 </div>
               </CollapsibleTrigger>
               <CollapsibleContent>
