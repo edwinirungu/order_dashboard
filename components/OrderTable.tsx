@@ -63,10 +63,10 @@ export default function OrderTable({ orders }: { orders: OrderJSON[] | [] }) {
             <div>
               {order.total_distance}km
               <br />{" "}
-              <div className="text-slate-500">
+              <div className="text-slate-700">
                 {order.order_destinations.length > 1
                   ? `${order.order_destinations.length} Stops`
-                  : ``}
+                  : `single drop`}
               </div>
             </div>
             <div>KES {Number(order.total_price).toFixed(2)}</div>

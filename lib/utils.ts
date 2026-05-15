@@ -8,8 +8,10 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 const instance = axios.create({
-  baseURL: "https://fakerapi.it/api/v2",
+  baseURL: "https://dev.core.quatrixglobal.com/api/admin",
 });
+
+export const fetcher = (url, token) => {};
 
 export default function fetcher() {
   return instance
